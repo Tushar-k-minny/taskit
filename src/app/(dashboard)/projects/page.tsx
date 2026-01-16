@@ -1,7 +1,8 @@
+import { getProjectsWithTaskCount } from "@/actions/projects";
 import { ProjectsClient } from "./projects-client";
 
-export const dynamic = "force-dynamic";
+export default async function ProjectsPage() {
+  const projects = await getProjectsWithTaskCount();
 
-export default function ProjectsPage() {
-  return <ProjectsClient />;
+  return <ProjectsClient initialProjects={projects} />;
 }
