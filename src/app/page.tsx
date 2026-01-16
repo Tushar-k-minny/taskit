@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
   ArrowsClockwise,
@@ -10,6 +9,7 @@ import {
   Sparkle,
 } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
