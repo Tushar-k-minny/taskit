@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
   ArrowsClockwise,
@@ -9,7 +10,6 @@ import {
   Sparkle,
 } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
@@ -153,7 +153,7 @@ export default function HomePage() {
               <div className="flex items-center gap-3">
                 <a
                   className="text-muted-foreground transition-all duration-200 hover:scale-110 hover:text-primary"
-                  href="https://linkedin.com/in/your-profile"
+                  href="https://www.linkedin.com/in/tushar-kumar-minny/"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -161,7 +161,7 @@ export default function HomePage() {
                 </a>
                 <a
                   className="text-muted-foreground transition-all duration-200 hover:scale-110 hover:text-primary"
-                  href="https://github.com/your-username"
+                  href="https://github.com/Tushar-k-minny/"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
