@@ -8,7 +8,7 @@ A beautiful, full-stack task management application built with Next.js 16, featu
 - 🔐 **Better Auth** for secure authentication
 - 💾 **PostgreSQL + Drizzle ORM** for type-safe database access
 - 🎨 **Tailwind CSS v4 + shadcn/ui** for beautiful UI
-- 🤖 **AI-powered features** with Google Gemini
+
 - 📱 **Fully responsive** design with dark mode support
 - ⚡ **Server Actions** for optimistic updates
 - 🔍 **Biome.js + Ultracite** for fast linting/formatting
@@ -19,7 +19,7 @@ A beautiful, full-stack task management application built with Next.js 16, featu
 
 - [Bun](https://bun.sh) (v1.0+)
 - PostgreSQL database (or [Neon](https://neon.tech) account)
-- [Google Gemini API key](https://ai.google.dev) (optional, for AI features)
+
 
 ### Installation
 
@@ -39,24 +39,30 @@ A beautiful, full-stack task management application built with Next.js 16, featu
    cp .env.example .env
    ```
 
-   Fill in your `.env` file:
-   ```env
-   DATABASE_URL="postgresql://..."
-   BETTER_AUTH_SECRET="your-secret-min-32-chars"
-   BETTER_AUTH_URL="http://localhost:3000"
-   ```
+Fill in your `.env` file:
+    ```env
+    DATABASE_URL="postgresql://..."
+    BETTER_AUTH_SECRET="your-secret-min-32-chars"
+    BETTER_AUTH_URL="http://localhost:3000"
+    NEXT_PUBLIC_APP_URL="http://localhost:3000"
+    ```
 
-4. Push database schema:
-   ```bash
-   bun run db:push
-   ```
+4. Set up Git hooks:
+    ```bash
+    bun prepare
+    ```
 
-5. Start development server:
-   ```bash
-   bun dev
-   ```
+5. Push database schema:
+    ```bash
+    bun run db:push
+    ```
 
-6. Open [http://localhost:3000](http://localhost:3000)
+6. Start development server:
+    ```bash
+    bun dev
+    ```
+
+7. Open [http://localhost:3000](http://localhost:3000)
 
 ## Scripts
 
@@ -72,6 +78,7 @@ A beautiful, full-stack task management application built with Next.js 16, featu
 | `bun db:generate` | Generate database migrations |
 | `bun db:push` | Push schema to database |
 | `bun db:studio` | Open Drizzle Studio |
+| `bun prepare` | Set up Git hooks (Husky) |
 
 ## Project Structure
 
@@ -106,6 +113,7 @@ src/
 | `DATABASE_URL` | PostgreSQL connection string |
 | `BETTER_AUTH_SECRET` | Secret for auth sessions (min 32 chars) |
 | `BETTER_AUTH_URL` | Your production URL |
+| `NEXT_PUBLIC_APP_URL` | Your public application URL |
 
 ## How to Use This Application
 

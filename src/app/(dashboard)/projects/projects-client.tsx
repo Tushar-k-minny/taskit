@@ -44,7 +44,7 @@ import type { Project } from "@/db/schema";
 import { formatRelativeDate } from "@/lib/utils";
 
 interface ProjectsClientProps {
-  initialProjects: (Project & { taskCount: number })[];
+  initialProjects?: (Project & { taskCount: number })[];
 }
 
 const COLORS = [
@@ -61,7 +61,7 @@ const COLORS = [
 ];
 
 export function ProjectsClient({ initialProjects }: ProjectsClientProps) {
-  const [projects, setProjects] = useState(initialProjects);
+  const [projects, setProjects] = useState(initialProjects || []);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -109,7 +109,7 @@ export function ProjectsClient({ initialProjects }: ProjectsClientProps) {
           });
           if (result.success && result.data) {
             setProjects((prev) =>
-              prev.map((p) =>
+              (prev || []).map((p) =>
                 p.id === editingProject.id
                   ? { ...result.data, taskCount: p.taskCount }
                   : p
@@ -120,7 +120,10 @@ export function ProjectsClient({ initialProjects }: ProjectsClientProps) {
         } else {
           const result = await createProject(formData);
           if (result.success && result.data) {
-            setProjects((prev) => [{ ...result.data, taskCount: 0 }, ...prev]);
+            setProjects((prev) => [
+              { ...result.data, taskCount: 0 },
+              ...(prev || []),
+            ]);
             toast({ title: "Project created", variant: "success" });
           }
         }
@@ -171,7 +174,7 @@ export function ProjectsClient({ initialProjects }: ProjectsClientProps) {
       </div>
 
       {/* Projects grid */}
-      {projects.length === 0 ? (
+      {!projects || projects.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <Kanban
@@ -190,7 +193,7 @@ export function ProjectsClient({ initialProjects }: ProjectsClientProps) {
         </Card>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
+          {(projects || []).map((project) => (
             <Card
               className="group relative overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
               key={project.id}
